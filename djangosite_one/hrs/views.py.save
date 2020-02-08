@@ -12,5 +12,5 @@ depts_list = [
 
 
 def index(request):
-    #  return HttpResponse('<h1>Hello, Django! This is a HR system.</h1>')
+   stem.</h1>')
     return render(request, 'index.html', {'depts_list': depts_list})

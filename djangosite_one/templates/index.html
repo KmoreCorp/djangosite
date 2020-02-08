@@ -1,0 +1,27 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INDEX</title>
+</head>
+<body>
+    <h1>DEPARTMENT INFO</h1>
+    <hr>
+    <table>
+        <tr>
+            <th>DEPT NO.</th>
+            <th>DEPT NAME</th>
+            <th>LOCATION</th>
+        </tr>
+        {% for dept in depts_list %}
+        <tr>
+            <td>{{ dept.no }}</td>
+            <td>{{ dept.name }}</td>
+            <td>{{ dept.location }}</td>
+        <tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

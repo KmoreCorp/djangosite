@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ALL SUBJECTS</title>
+</head>
+<body>
+    <h1>ALL SUBJECTS</h1>
+    <hr>
+    {% for subject in subjects %}
+    <div>
+        <h3>
+            <a href="/teachers/?sno={{ subject.no }}">{{ subject.name }}</a>
+            {% if subject.is_hot %}
+            <!--<img src="/static/images/hot.png" width="32" alt="">-->
+            <div>---HOT!!!---</div>
+            {% endif %}
+        </h3>
+        <p>{{ subject.intro }}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>

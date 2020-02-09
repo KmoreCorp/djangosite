@@ -3,3 +3,11 @@ __pycache__/
 
 # Virtual Enviroment
 venv/
+djvenv/
+
+# .idea
+
+djangosite_one/.idea
+
+# MacOS file
+.DS_Store

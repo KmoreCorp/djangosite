@@ -10,7 +10,8 @@ class SubjectAdmin(admin.ModelAdmin):
 
 class TeacherAdmin(admin.ModelAdmin):
     list_display = ('no', 'name', 'detail', 'good_count', 'bad_count', 'subject')
-    search_fields = ('name', 'subject')
+    ordering = ('no',)
+    search_fields = ('name',)
 
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Teacher, TeacherAdmin)

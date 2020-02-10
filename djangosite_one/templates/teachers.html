@@ -1,0 +1,37 @@
+<!<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TEACHERS</title>
+
+</head>
+<body>
+    <h1>TEACHERS OF {{ subject.name }}</h1>
+    <hr>
+    {% if teachers %}
+    {% for teacher in teachers %}
+    <div>
+        <div>
+            {{ teacher.photo }}
+        </div>
+        <div>
+            <h3>{{ teacher.name }}</h3>
+            <p>{{ teacher.detail }}</p>
+            <p class="comment">
+                <a href="">Good: </a>
+                (<span>{{ teacher.good_count }}</span>)
+                <a href="">Bad: </a>
+                (<span>{{ teacher.bad_count }}</span>)
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3>Currently No Teacher Information</h3>
+    {% endif %}
+    <p>
+        <a href="/">Back to Home</a>
+    </p>
+</body>
+</html>

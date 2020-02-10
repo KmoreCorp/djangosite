@@ -20,6 +20,7 @@ from poll import views
 
 urlpatterns = [
     path('', views.show_subjects),
+    path('teachers/', views.show_teachers),
     path('admin/', admin.site.urls),
     path('hrs/', include('hrs.urls')),
 ]

@@ -27,6 +27,9 @@ class Teacher(models.Model):
     bad_count = models.IntegerField(default=0, verbose_name ='Bad No.')
     subject = models.ForeignKey(Subject, on_delete = models.PROTECT, verbose_name='Belongs to')
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = 'tb_teacher'
         verbose_name = 'Teacher'

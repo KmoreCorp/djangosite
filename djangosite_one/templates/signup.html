@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+
+</head>
+<body>
+    <h1>User Register</h1>
+    <hr>
+    <p class="hint">{{ hint }}</p>
+    <form action="/register/" method="post">
+        {% csrf_token %}
+        <div class="input">
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username">
+        </div>
+        <div class="input">
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div class="input">
+            <label for="repassword">Confirm: </label>
+            <input type="password" id="repassword" name="repassword">
+        </div>
+        <div class="input">
+            <input type="submit" value="Register">
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+    <p></p>
+    <a href="/login">Back to Login</a>
+</body>
+</html>

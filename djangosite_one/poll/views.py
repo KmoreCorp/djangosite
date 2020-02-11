@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 # from django.http import HttpResponse
-from poll.models import Subject, Teacher
+from poll.models import Subject, Teacher, RegistrationForm, LoginForm, User #,Captcha
+
+
 
 def show_subjects(request):
      """view on all subjects"""
@@ -33,3 +35,32 @@ def prise_or_critisize(request):
     except (KeyError, ValueError, Teacher.DoesNotExist):
         data = {'code': 404, 'hint': 'Action Failure'}
     return JsonResponse(data)
+
+def register(request):
+    page, hint = 'signup.html', ''
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            page = 'signin.html'
+            hint = 'Success, please login'
+        else:
+            hint = 'Please enter valid registration infomation'
+    return render(request, page, {'hint': hint})
+
+
+def login(request):
+    hint = ''
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = User.objects.filter(username=username, password=password).first()
+            if user:
+                return redirect('/')
+            else:
+                hint = '用户名或密码错误'
+        else:
+            hint = '请输入有效的登录信息'
+    return render(request, 'signin.html', {'hint': hint})

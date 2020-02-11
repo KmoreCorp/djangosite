@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <style>/* 此处省略层叠样式表选择器 */</style>
+</head>
+<body>
+    <h1>User Login</h1>
+    <hr>
+    <p class="hint">{{ hint }}</p>
+    <form action="/login/" method="post">
+        {% csrf_token %}
+        <div class="input">
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username">
+        </div>
+        <div class="input">
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password">
+        </div>
+        <!--div class="input captcha">
+            <label for="captcha">Validation: </label>
+            <input type="text" id="captcha" name="captcha">
+            <img src="/captcha/" width="120">
+        </div-->
+        <div class="input">
+            <input type="submit" value="Login">
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+    <a href="/register">New Register</a>
+</body>
+</html>

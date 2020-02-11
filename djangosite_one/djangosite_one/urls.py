@@ -23,6 +23,8 @@ urlpatterns = [
     path('teachers/', views.show_teachers),
     path('prise/', views.prise_or_critisize),
     path('critisize/', views.prise_or_critisize),
+    path('register/', views.register, name='register'),
+    path('login/', views.login, name='login'),
     path('admin/', admin.site.urls),
     path('hrs/', include('hrs.urls')),
 ]

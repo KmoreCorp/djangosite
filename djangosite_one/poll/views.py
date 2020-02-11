@@ -25,19 +25,22 @@ def show_teachers(request):
     except (KeyError, ValueError, Subject.DoesNotExist):
         return redirect('/')
 
-def prise_or_critisize(request):
+def prise_or_critisize(request: HttpResponse):
     """Good"""
-    try:
-        tno = int(request.GET['tno'])
-        teacher = Teacher.objects.get(no = tno)
-        if request.path.startswith('/prise'):
-            teacher.good_count += 1
-        else:
-            teacher.bad_count += 1
-        teacher.save()
-        data = {'code': 200, 'hint': 'Action Success'}
-    except (KeyError, ValueError, Teacher.DoesNotExist):
-        data = {'code': 404, 'hint': 'Action Failure'}
+    if 'username' in request.session:
+        try:
+            tno = int(request.GET['tno'])
+            teacher = Teacher.objects.get(no = tno)
+            if request.path.startswith('/prise'):
+                teacher.good_count += 1
+            else:
+                teacher.bad_count += 1
+            teacher.save()
+            data = {'code': 200, 'hint': 'Action Success'}
+        except (KeyError, ValueError, Teacher.DoesNotExist):
+            data = {'code': 404, 'hint': 'Action Failure'}
+    else:
+        data = {'code': 401, 'message': 'Login Please'}
     return JsonResponse(data)
 
 def register(request):

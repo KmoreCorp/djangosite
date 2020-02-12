@@ -15,17 +15,30 @@
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
-		  <a class="navbar-brand" href="#">
+		  <a class="navbar-brand" href="{% url 'products:product_page' %}">
 		  	<img src=" {% static "logo.png" %} " height="30">
 		  	PH克隆</a>
 		  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 		    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-		      <li class="nav-item ">
-		        <a class="nav-link" href="#">登录</a>
-		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href=" {% url 'accounts:signup' %}" tabindex="-1" aria-disabled="true">注册</a>
-		      </li>
+		    	{% if user.is_authenticated %}
+			      <li class="nav-item ">
+			        <a class="nav-link" href="{% url 'products:new_prod' %}">发布</a>
+			      </li>
+		    		<li class="nav-item ">
+		        		<a class="nav-link" href="JavaScript:{document.getElementById('logout').submit()}">登出</a>
+        				<form method='POST' id ='logout' action='{% url 'accounts:logout' %}'>
+							{% csrf_token %} 
+							<input type="hidden">
+						</form>
+		     		</li>
+		    	{% else %}
+			      <li class="nav-item ">
+			        <a class="nav-link" href="{% url 'accounts:login' %}">登录</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href=" {% url 'accounts:signup' %}" >注册</a>
+			      </li>		    	
+		      {% endif %}
 		    </ul>
 		    <!--form class="form-inline my-2 my-lg-0">
 		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

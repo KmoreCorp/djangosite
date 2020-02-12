@@ -1,0 +1,29 @@
+{% extends "theme.html" %}
+
+{% block pgtitle %}
+	用户登录
+{% endblock pgtitle %}
+
+{% block content %}
+	<div>
+		<br>
+	</div>
+	<div class="mx-auto" style="width: 400px;">
+	<h3>登录账户</h3>
+	</div>
+	<br>
+	<div class="mx-auto" style="width: 400px;">
+		<form method='POST' action='{% url 'accounts:login' %}'>
+			{% csrf_token %} 
+			用户名： <input type="text" name="username" placeholder="用户名">
+			{{username_error}}
+			<br>
+			<br>
+			密码： <input type="password" name="password" placeholder="密码">
+			{{login_error}}
+			<br>
+			<br>
+			<button class='btn btn-primary' type='submit'>立即登录</button>
+		</form>
+	</div>
+{% endblock content %}

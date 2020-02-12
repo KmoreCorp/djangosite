@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-hans" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Register</title>
+    </head>
+    <body>
+        <h1>注册界面</h1>
+        {% if registerform.errors %}
+            <div class="">
+                {{ registerform.errors }}
+            </div>
+        {% endif %}
+        <form class="" action="" method="POST">
+            {% csrf_token %}
+            <form class="" action="" method="POST">
+                <p>
+                    <label for="id_username">用户名:</label>
+                    <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
+                    <span class="helptext">*。150个字符或者更少。包含字母，数字和仅有的@/./+/-/_符号。</span>
+                </p>
+                <p>
+                    <label for="id_password1">密码:</label>
+                    <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+                    <span class="helptext"></span>
+                </p>
+                <ul>
+                    <li>Your password can’t be too similar to your other personal information.</li>
+                    <li>你的密码必须包含至少 8 个字符。</li>
+                    <li>Your password can’t be a commonly used password.</li>
+                    <li>Your password can’t be entirely numeric.</li>
+                </ul>
+                <p></p>
+                <p>
+                    <label for="id_password2">密码确认:</label>
+                    <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+                    <span class="helptext">为了校验，请输入与上面相同的密码。</span>
+                </p>
+                <p>
+                    <label for="id_email">电子邮件地址:</label>
+                    <input type="email" name="email" maxlength="254" id="id_email">
+                </p>
+                <p>
+                    <label for="id_nickname">昵称:</label>
+                    <input type="text" name="nickname" maxlength="50" id="id_nickname">
+                </p>
+                <p>
+                    <label for="id_birthday">生日:</label>
+                    <input type="date" name="birthday" id="id_birthday">
+                </p>
+            <button type="submit" name="submit">提交</button>
+            <a href="{% url 'myauth:index'%}">返回主页</a>
+        </form>
+    </body>
+</html>

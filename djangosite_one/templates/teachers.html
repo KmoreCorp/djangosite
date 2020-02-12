@@ -19,9 +19,10 @@
             <h3>{{ teacher.name }}</h3>
             <p>{{ teacher.detail }}</p>
             <p class="comment">
-                <a href="">Good: </a>
+                <a href="/prise/?tno={{ teacher.no }}">Good: </a>
                 (<span>{{ teacher.good_count }}</span>)
-                <a href="">Bad: </a>
+                &nbsp;&nbsp;
+                <a href="/critisize/?tno={{ teacher.no }}">Bad: </a>
                 (<span>{{ teacher.bad_count }}</span>)
             </p>
         </div>
@@ -33,5 +34,25 @@
     <p>
         <a href="/">Back to Home</a>
     </p>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(() => {
+            $('.comment>a').on('click', (evt) => {
+                evt.preventDefault()
+                let anchor = $(evt.target)
+                let url = anchor.attr('href')
+                $.getJSON(url, (json) => {
+                    if (json.code == 200) {
+                        let span = anchor.next()
+                        span.text(parseInt(span.text()) + 1)
+                    } else if(json.code == 401){
+                        location.href = '/login/?backurl=' +location.href
+                    }else{
+                        alert(json.message)
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 </html>

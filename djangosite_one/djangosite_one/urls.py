@@ -21,6 +21,13 @@ from poll import views
 urlpatterns = [
     path('', views.show_subjects),
     path('teachers/', views.show_teachers),
+    path('prise/', views.prise_or_critisize),
+    path('critisize/', views.prise_or_critisize),
+    path('register/', views.register, name='register'),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
+    path('excel/', views.export_teachers_excel),
+    path('teachers_data/', views.get_teachers_data),
     path('admin/', admin.site.urls),
     path('hrs/', include('hrs.urls')),
 ]

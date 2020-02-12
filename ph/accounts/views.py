@@ -19,7 +19,7 @@ def signup(request):
 		except User.DoesNotExist:
 			if password1 == password2:
 				User.objects.create_user(username=user_name, password = password1)
-				return redirect ('product_page')
+				return redirect ('products:product_page')
 			else:
 				return render(request, 'signup.html', {'password_error': '两次输入的密码不一致'})
 
@@ -34,8 +34,8 @@ def login(request):
 			return render(request, 'login.html', {'login_error': '用户名或密码错误'})
 		else:
 			auth.login(request, user)
-			return redirect ('product_page')
+			return redirect ('products:product_page')
 def logout(request):
 	if request.method == 'POST':
 		auth.logout(request)
-		return redirect ('product_page')
+		return redirect ('products:product_page')

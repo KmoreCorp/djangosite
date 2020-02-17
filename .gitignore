@@ -11,3 +11,6 @@ djangosite_one/.idea
 
 # MacOS file
 .DS_Store
+
+# dbtest
+/dbtest/

@@ -9,6 +9,12 @@ def index(request):
     # Generate counts of some of the main objects
 
     num_books = Book.objects.all().count()
+
+    ## 用session来记录访问该用户访问次数，第一次，加入0
+    num_visits = request.session.get('num_visits',0)
+    request.session['num_visits'] = num_visits + 1
+
+
     num_instances = BookInstance.objects.all().count()
 
     # Available books (status = 'a')
@@ -27,6 +33,7 @@ def index(request):
         'num_authors' : num_authors,
         'num_genres' : num_genres,
         'num_books_keyword' : num_books_keyword,
+        'num_visits' : num_visits
     }
 
     return render(request, 'index.html', context = context)

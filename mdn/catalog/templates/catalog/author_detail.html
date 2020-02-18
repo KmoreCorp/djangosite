@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>Author Detail</title>
+{% endblock title %}
+
+{% block content %}
+    <h1> {{author.last_name}} {{author.first_name}}</h1>
+
+    <p><strong>作者生日：</strong> {{author.date_of_birth}} </p>
+    {% if author.date_of_death %}
+    <p><strong>作者逝世：</strong> {{author.date_of_death}} 
+    {% endif %} </p>
+
+    <div style="margin-left:20px;margin-top:20px">
+    <h4>作品</h4>
+
+    {% for book in author.book_set.all %}
+        <hr>
+        <p>
+            <a href="{% url 'book-detail' book.pk %} "><strong>{{book.title}}</strong> </a>
+        </p>
+        <p>
+            {{book.summary}}
+        </p>
+    {% endfor %}
+
+    </div>
+{% endblock content %}

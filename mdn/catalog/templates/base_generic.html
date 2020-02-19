@@ -19,6 +19,22 @@
           <li><a href=" {% url 'books' %} ">所有书籍</a></li>
           <li><a href="{% url 'authors' %} ">所有作者</a></li>
         </ul>
+        <hr>
+             {% if user.is_authenticated %}
+               <li>用户: {{ user.get_username }}</li>
+               <li><a href="{% url 'my-borrowed' %}">我的借阅</a></li>
+               <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>   
+            {% else %}
+                <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+            {% endif %} 
+        </ul>
+            {% if perms.catalog.can_mark_returned %}
+               <hr>
+               <li><strong>管理员功能</strong></li>
+
+               <li><a href="{% url 'all-loaned' %} ">所有借阅</a></li>
+                </li>   
+            {% endif %} 
      {% endblock %}
       {% block pagination %}
         {% if is_paginated %}

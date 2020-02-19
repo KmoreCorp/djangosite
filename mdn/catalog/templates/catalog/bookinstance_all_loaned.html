@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    <title>所有借阅</title>
+{% endblock title %}
+
+{% block content %}
+    <h1>所有外借书籍</h1>
+    {% if bookinstance_list %}
+    <ul>
+
+      {% for bookinst in bookinstance_list %} 
+      <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+        <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a>     ({% if bookinst.is_overdue %}已超期！--{% endif %}计划归还时间：{{ bookinst.due_back }})---{{bookinst.borrower.username}}
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>全管暂未有借阅的书籍。</p>
+    {% endif %}       
+
+
+
+
+
+{% endblock content %}

@@ -123,11 +123,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 ## 只在develop阶段，下面的不设置没关系，因为DJ会去app/static目录下寻找文件
 ### 设置之后static存放位置，下面意思是存在根目录下的static文件夹内，之后collect会都拷贝过来。
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 ### 其他存放static的位置，在每个app的static文件夹内。
-# STATIC_DIRS = [
-#     os.path.join(BASE_DIR, 'static/'),
-# ]
+STATIC_DIRS = [
+    os.path.join(BASE_DIR, 'static/'),
+]
 ## 参考https://blog.csdn.net/weixin_36296538/article/details/83153070
 
 

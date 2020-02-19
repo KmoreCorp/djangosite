@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>续借更新</title>
+{% endblock title %}
+{% block content  %}
+  <h1>续借 : 《{{ book_instance.book.title }}》</h1>
+  <p>借阅者： {{ book_instance.borrower }}</p>
+  <p{% if book_instance.is_overdue %} class="text-danger"{% endif %}>计划还书日期: {{ book_instance.due_back }}</p>
+    
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    {# 这个form是在views.py里规定了 #}
+    </table>
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}
